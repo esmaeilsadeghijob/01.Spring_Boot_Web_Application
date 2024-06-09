@@ -48,5 +48,14 @@ public class StuController {
     }
 
     //Todo Implement GetMapping find Student By Id
+    @GetMapping("{id}")
+    public Student findStudentById(@PathVariable("id") int id){
+        for (Student stu: students){
+            if(stu.getId() == id){
+                return stu;
+            }
+        }
+        return null;
+    }
 
 }
