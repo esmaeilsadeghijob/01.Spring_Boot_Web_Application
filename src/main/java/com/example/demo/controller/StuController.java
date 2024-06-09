@@ -28,4 +28,23 @@ public class StuController {
         students.remove(id);
     }
 
+    @PutMapping("{id}")
+    public Student update(@PathVariable("id") int id,@RequestBody  Student student){
+        int count = 0;
+       Student student1 = new Student();
+        for (Student stu: students){
+           if(stu.getId() == id){
+               student1 = stu;
+               count = students.indexOf(stu);
+           }
+       }
+        if(student.getFirstname() != null){
+            student1.setFirstname(student.getFirstname());
+        } else if(student.getLastname() != null){
+            student1.setLastname(student.getLastname());
+        }
+        students.set(count, student1);
+        return student1;
+    }
+
 }
